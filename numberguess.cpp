@@ -51,8 +51,3 @@ void main()
 	cout << "Thanks for playing!\n";
 
 }
-
-
-
-
-
