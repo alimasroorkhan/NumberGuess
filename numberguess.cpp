@@ -4,6 +4,12 @@
 
 using namespace std;
 
+void displayIntroduction() {
+    cout << "Welcome to the Guessing Game!\n";
+    cout << "I've selected a secret number between 1 and 25.\n";
+    cout << "You have 5 attempts to guess it.\n";
+}
+
 void playGame() {
     srand(static_cast<unsigned int>(time(0)));
     int secretNum = rand() % 25 + 1;
@@ -13,7 +19,8 @@ void playGame() {
     int guess;
 
     while (attempt < maxAttempts) {
-        cout << "Guess the number between 1 & 25: ";
+        cout << "\nAttempt " << attempt + 1 << " of " << maxAttempts << endl;
+        cout << "Enter your guess: ";
         cin >> guess;
 
         if (guess == secretNum) {
@@ -21,14 +28,13 @@ void playGame() {
             return;
         }
         else if (guess < secretNum) {
-            cout << "Too low! Try again.\n";
+            cout << "Too low! Try a higher number.\n";
         }
         else {
-            cout << "Too high! Try again.\n";
+            cout << "Too high! Try a lower number.\n";
         }
 
         attempt++;
-        cout << "Attempts remaining: " << maxAttempts - attempt << endl;
     }
 
     cout << "Sorry, you've run out of attempts. The secret number was: " << secretNum << endl;
@@ -38,7 +44,9 @@ int main() {
     char playAgain = 'y';
 
     while (playAgain == 'y' || playAgain == 'Y') {
+        displayIntroduction();
         playGame();
+
         cout << "Do you want to play again? (y/n): ";
         cin >> playAgain;
     }
